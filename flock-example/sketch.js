@@ -5,7 +5,7 @@ var text;
 
 function setup() {
   createCanvas(640,360);
-  createP("Drag the mouse to generate new boids.");
+  // createP("Drag the mouse to generate new boids.");
   
   flock = new Flock();
   // Add an initial set of boids into the system
