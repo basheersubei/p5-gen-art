@@ -3,13 +3,15 @@ var flock;
 
 var text;
 
+var MAX_PREV_POSITIONS = 100;
+
 function setup() {
-  createCanvas(640,360);
+  createCanvas(640,480);
   // createP("Drag the mouse to generate new boids.");
   
   flock = new Flock();
   // Add an initial set of boids into the system
-  for (var i = 0; i < 100; i++) {
+  for (var i = 0; i < 5; i++) {
     var b = new Boid(width/2,height/2);
     flock.addBoid(b);
   }
@@ -57,6 +59,7 @@ Flock.prototype.addBoid = function(b) {
 function Boid(x,y) {
   this.acceleration = createVector(0,0);
   this.velocity = createVector(random(-1,1),random(-1,1));
+  this.prev_positions = [createVector(x,y)];  // an array of last K previous positions
   this.position = createVector(x,y);
   this.r = 3.0;
   this.maxspeed = 3;    // Maximum speed
@@ -96,6 +99,15 @@ Boid.prototype.update = function() {
   this.velocity.add(this.acceleration);
   // Limit speed
   this.velocity.limit(this.maxspeed);
+
+  // update previous position before setting new position
+  this.prev_positions.push(createVector(this.position.x,this.position.y,this.position.z));
+  
+  // if too many prev_positions are already there, remove old ones
+  if (this.prev_positions.length > MAX_PREV_POSITIONS) {
+    this.prev_positions.splice(0, 1);  // remove first element (oldest position)
+  }
+
   this.position.add(this.velocity);
   // Reset accelertion to 0 each cycle
   this.acceleration.mult(0);
@@ -119,8 +131,15 @@ Boid.prototype.render = function() {
   var theta = this.velocity.heading() + radians(90);
   fill(127);
   stroke(200);
+
+  // draw trailing lines (as ellipses for now, TODO will find more optimized way)
+  for (var i = 0; i < this.prev_positions.length; i++) {
+    ellipse(this.prev_positions[i].x, this.prev_positions[i].y, 1, 1);
+  }
   push();
+
   translate(this.position.x,this.position.y);
+
   rotate(theta);
   beginShape();
   vertex(0, -this.r*2);
