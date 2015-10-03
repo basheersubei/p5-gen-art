@@ -30,7 +30,9 @@ function draw() {
   for (var i = 0; i < n; i++) {
     //Trippy swirling effect:
     var sq = sqrt(i/separation_factor) * 10;
-    var radius = 0.04 * (5 + pow(i, size_factor)) * sin(i/10)*10;
+    var mouse_x = map(mouseX, 0, width, 1, 100);
+    var mouse_y = map(mouseY, 0, height, 1, 100);
+    var radius = 0.04 * (5 + pow(i, size_factor)) * sin(i/mouse_x)*mouse_y;
     
     //Original effect:
     //var radius = 0.04 * (5 + pow(i, size_factor)) * mouseY / 5;
