@@ -32,8 +32,11 @@ function draw() {
     var sq = sqrt(i/separation_factor) * 10;
     var mouse_x = map(mouseX, 0, width, 1, 100);
     var mouse_y = map(mouseY, 0, height, 0, 3.14);
-    var radius = 0.04 * (5 + pow(i, size_factor)) * sin((i/mouse_x)+mouse_y)*20;
-    
+    var radius = 0.04 * (5 + pow(i, size_factor)) * sin(i/mouse_x + mouse_y)*20;
+    if (frameCount % 10 == 0) {
+      console.log("mouse_x: " + mouse_x);
+      console.log("mouse_y: " + mouse_y);
+    }
     //Original effect:
     //var radius = 0.04 * (5 + pow(i, size_factor)) * mouseY / 5;
     //var sq = sqrt(i/separation_factor) * mouseX / 40;
