@@ -29,8 +29,8 @@ function draw() {
   fill(color(214,115,113));
   for (var i = 0; i < n; i++) {
     //Trippy swirling effect:
-    var sq = sqrt(i/separation_factor) * 18;
-    var radius = 0.04 * (5 + pow(i, size_factor)) * sin(i/10)*30;
+    var sq = sqrt(i/separation_factor) * 10;
+    var radius = 0.04 * (5 + pow(i, size_factor)) * sin(i/10)*10;
     
     //Original effect:
     //var radius = 0.04 * (5 + pow(i, size_factor)) * mouseY / 5;
