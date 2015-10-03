@@ -15,7 +15,7 @@ function setup() {
   noStroke();
   createCanvas(displayWidth, displayHeight);
   theta = 2 * PI * (sqrt(5.0)-1) / 2.0;  // golden ratio angle
-  n = 500;                               // number of circles
+  n = 100;                               // number of circles
   separation_factor = 1.2;  // 1.2 is default
   size_factor = 0.4;  // 0.4 is default
 
@@ -31,8 +31,8 @@ function draw() {
     //Trippy swirling effect:
     var sq = sqrt(i/separation_factor) * 10;
     var mouse_x = map(mouseX, 0, width, 1, 100);
-    var mouse_y = map(mouseY, 0, height, 1, 100);
-    var radius = 0.04 * (5 + pow(i, size_factor)) * sin(i/mouse_x)*mouse_y;
+    var mouse_y = map(mouseY, 0, height, 0, 3.14);
+    var radius = 0.04 * (5 + pow(i, size_factor)) * sin((i/mouse_x)+mouse_y)*20;
     
     //Original effect:
     //var radius = 0.04 * (5 + pow(i, size_factor)) * mouseY / 5;
