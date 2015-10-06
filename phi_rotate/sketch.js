@@ -11,6 +11,8 @@ var n;
 var separation_factor;
 var size_factor;
 var is_rotating;
+var my_color;
+
 function setup() {
   noStroke();
   createCanvas(displayWidth, displayHeight);
@@ -24,11 +26,15 @@ function setup() {
   frameRate(30);
 
   angleMode(RADIANS);
+  my_color = color(123,123,123);
 }
 
 function draw() {
   background(color(113, 87, 84));
-  fill(color(214,115,113));
+  
+  // fill(color(214,115,113));
+  fill(my_color);
+
   for (var i = 0; i < n; i++) {
     // Trippy swirling effect:
     var sq = sqrt(i/separation_factor) * 10;
