@@ -30,8 +30,8 @@ function setup() {
   angleMode(RADIANS);
   logoScaleFactor = 0.2;
   //Color variables
-  bgColor = color(43,10,24);
-  logoColor = color (255,80);
+  bgColor = color(43,10,24,30);
+  logoColor = color (255,60);
 }
 
 function draw() {
